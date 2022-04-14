@@ -1,0 +1,11 @@
+SPUMBRA_CORE_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_character_class.cpp
+
+SPUMBRA_FILESYSTEM_SOURCE_FILES := 	$(SPUMBRA_SOURCE_DIRECTORY)/filesystem/file.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/filesystem/filesystem.cpp
+
+SPUMBRA_TRANSLATION_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/translation/utf8_to_utf32_translation_phase.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/string_literal_translation_phase.cpp
+
+SPUMBRA_SOURCE_FILES += $(SPUMBRA_CORE_SOURCE_FILES) \
+						$(SPUMBRA_FILESYSTEM_SOURCE_FILES) \
+						$(SPUMBRA_TRANSLATION_SOURCE_FILES)
