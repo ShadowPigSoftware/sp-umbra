@@ -7,6 +7,19 @@ namespace ShadowPig::Umbra {
     public:
         void run(const UTF32String& string);
         const UTF32String& output() const;
+
+        class InvalidEscapeCharacterException: public std::runtime_error {
+        public:
+            InvalidEscapeCharacterException(const UTF32Character& character);
+            const UTF32Character& character() const;
+        private:
+            UTF32Character _character;
+        };
+
+        class IncompleteStringException: public std::runtime_error {
+        public:
+            IncompleteStringException();
+        };
     private:
         struct ProcessCharacterOutput {
             bool process;

@@ -242,7 +242,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -257,7 +256,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -272,7 +270,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -287,7 +284,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -302,7 +298,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -317,7 +312,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -332,7 +326,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -347,7 +340,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -362,7 +354,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -377,7 +368,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -392,7 +382,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -407,7 +396,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -422,7 +410,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -437,7 +424,6 @@ spunitModule {
             try {
                 phase.run();
             } catch (const ::ShadowPig::Umbra::Utf8ToUtf32TranslationPhase::InvalidCharacterException& exception) {
-
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);

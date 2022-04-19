@@ -20,6 +20,20 @@ namespace ShadowPig::Umbra {
             {UTF32Character::Constants::Dollar, UTF32Character::Constants::Dollar}
         };
     }
+
+     StringLiteralTranslationPhase::InvalidEscapeCharacterException::InvalidEscapeCharacterException(const UTF32Character& character):
+        runtime_error("Invalid escape character"),
+        _character(character)
+    {}
+
+    const UTF32Character& StringLiteralTranslationPhase::InvalidEscapeCharacterException::character() const {
+        return _character;
+    }
+
+    StringLiteralTranslationPhase::IncompleteStringException::IncompleteStringException():
+        runtime_error("Incomplete string")
+    {}
+
     void StringLiteralTranslationPhase::run(const UTF32String& string) {
         _inString = false;
         _escape = false;
@@ -74,8 +88,10 @@ namespace ShadowPig::Umbra {
                 .character = it->second
             };  
         }
-        //TODO: Throw an error
-        throw 0;
+        else if (character == UTF32Character::Constants::EndOfUnit) {
+            throw IncompleteStringException();
+        }
+        throw InvalidEscapeCharacterException {character};
     }
 
     StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processUnescapedCharacter(const UTF32Character& character) {
@@ -92,6 +108,9 @@ namespace ShadowPig::Umbra {
                 .process = true, 
                 .character = UTF32Character::Constants::EndOfString //Don't care, this wont be used
             }; 
+        }
+        else if (character == UTF32Character::Constants::EndOfUnit) {
+            throw IncompleteStringException();
         }
         return ProcessCharacterOutput {
             .process = true, 

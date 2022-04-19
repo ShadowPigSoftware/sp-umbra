@@ -8,7 +8,7 @@ using UTF32Character = ::ShadowPig::Umbra::UTF32Character;
 using UTF32String = ::ShadowPig::Umbra::UTF32String;
 
 spunitModule {
-    fixture("UTF-8 to UTF-32 Translation Phase") {
+    fixture("String Literal Translation Phase") {
          scenario("Empty output by default") {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             expect(phase.output().length()).to.equal(0u);
@@ -69,7 +69,8 @@ spunitModule {
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::a, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::D, UTF32Character::Constants::DoubleQuote,
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(7u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -91,7 +92,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::a, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -107,7 +109,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::b, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -123,7 +126,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::e, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -139,7 +143,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::f, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -155,7 +160,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::n, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -171,7 +177,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::r, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -187,7 +194,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::t, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -203,7 +211,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::v, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -219,7 +228,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -235,7 +245,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -251,7 +262,8 @@ spunitModule {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Dollar, UTF32Character::Constants::DoubleQuote, 
-                UTF32Character::Constants::EndOfUnit});
+                UTF32Character::Constants::EndOfUnit
+            });
             expect(phase.output().length()).to.equal(4u);
             auto it = phase.output().begin();
             expect(*it).to.equal(UTF32Character::Constants::StartOfString);
@@ -261,6 +273,75 @@ spunitModule {
             expect(*it).to.equal(UTF32Character::Constants::EndOfString);
             ++it;
             expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+        }
+
+        scenario("Throws an error for an invalid escaped character") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::d, UTF32Character::Constants::DoubleQuote, 
+                    UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::InvalidEscapeCharacterException& exception) {
+                expect(exception.character()).to.equal(UTF32Character::Constants::d);
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
+        }
+
+        scenario("Throws an error for an invalid escaped character (different value)") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Z, UTF32Character::Constants::DoubleQuote, 
+                    UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::InvalidEscapeCharacterException& exception) {
+                expect(exception.character()).to.equal(UTF32Character::Constants::Z);
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
+        }
+
+        scenario("Throws an error for an incomplete string") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Z, UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
+        }
+
+        scenario("Throws an error for an incomplete string (after backslash)") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
+        }
+
+        scenario("Throws an error for an incomplete string (double quote after backslash)") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
         }
     }
 }
