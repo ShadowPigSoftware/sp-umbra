@@ -3,6 +3,7 @@
 
 #include "translation/string_literal_translation_phase.hpp"
 #include "test-doubles/fake_file_system.hpp"
+#include "utility/test_character_sequence.hpp"
 
 using UTF32Character = ::ShadowPig::Umbra::UTF32Character;
 using UTF32String = ::ShadowPig::Umbra::UTF32String;
@@ -11,33 +12,28 @@ spunitModule {
     fixture("String Literal Translation Phase") {
          scenario("Empty output by default") {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
-            expect(phase.output().length()).to.equal(0u);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {});
          }
 
         scenario("Replaces Empty string with Start & End") {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::EndOfUnit});
-            expect(phase.output().length()).to.equal(3u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces string containing characters with Start & End") {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::a, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::EndOfUnit});
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::a);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::a,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces string containing characters with Start & End (different values)") {
@@ -47,21 +43,15 @@ spunitModule {
                 UTF32Character::Constants::q, UTF32Character::Constants::Z, UTF32Character::Constants::Period, UTF32Character::Constants::h, 
                 UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit});
-            expect(phase.output().length()).to.equal(7u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::q);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Z);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Period);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::h);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::q,
+                UTF32Character::Constants::Z,
+                UTF32Character::Constants::Period,
+                UTF32Character::Constants::h,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces multiple strings containing characters with Start & End") {
@@ -71,21 +61,15 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::D, UTF32Character::Constants::DoubleQuote,
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(7u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::a);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::D);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::a,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::D,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'a\' with the bell character") {
@@ -94,15 +78,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::a, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Bell);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::Bell,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'b\' with the backspace character") {
@@ -111,15 +92,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::b, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Backspace);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::Backspace,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'e\' with the escape character") {
@@ -128,15 +106,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::e, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Escape);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::Escape,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'f\' with the form-feed character") {
@@ -145,15 +120,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::f, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::FormFeed);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::FormFeed,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'n\' with the line-feed character") {
@@ -162,15 +134,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::n, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::LineFeed);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::LineFeed,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'r\' with the carriage return character") {
@@ -179,15 +148,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::r, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::CarriageReturn);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::CarriageReturn,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'t\' with the tab character") {
@@ -196,15 +162,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::t, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::HorizontalTab);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::HorizontalTab,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'v\' with the vertical tab character") {
@@ -213,15 +176,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::v, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::VerticalTab);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::VerticalTab,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \'\\\' with the backslash character") {
@@ -230,15 +190,12 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Backslash);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::Backslash,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Replaces an escaped \"\"\" with the double quote character") {
@@ -247,32 +204,26 @@ spunitModule {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::DoubleQuote);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::DoubleQuote,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
-        scenario("Replaces an escaped \"$\" with the dollar character") {
+        scenario("Replaces an escaped \"$\" with the escaped dollar character") {
             ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
             phase.run(UTF32String {
                 UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Dollar, UTF32Character::Constants::DoubleQuote, 
                 UTF32Character::Constants::EndOfUnit
             });
-            expect(phase.output().length()).to.equal(4u);
-            auto it = phase.output().begin();
-            expect(*it).to.equal(UTF32Character::Constants::StartOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::Dollar);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfString);
-            ++it;
-            expect(*it).to.equal(UTF32Character::Constants::EndOfUnit);
+            ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
+                UTF32Character::Constants::StartOfString,
+                UTF32Character::Constants::EscapedDollar,
+                UTF32Character::Constants::EndOfString,
+                UTF32Character::Constants::EndOfUnit
+            });
         }
 
         scenario("Throws an error for an invalid escaped character") {

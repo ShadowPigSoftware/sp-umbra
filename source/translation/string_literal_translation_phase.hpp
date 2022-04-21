@@ -35,4 +35,6 @@ namespace ShadowPig::Umbra {
         bool _inString;
         bool _escape;
     };
+
+    using SLTP = StringLiteralTranslationPhase;
 }

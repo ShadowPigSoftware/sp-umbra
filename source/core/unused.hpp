@@ -1,5 +1,5 @@
 #pragma once
 
 namespace ShadowPig::Umbra::Internal {
-    constexpr void unused(...) {}
+    template <class ...Args> constexpr void unused(Args&&...) {}
 }

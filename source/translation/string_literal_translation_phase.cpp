@@ -17,7 +17,7 @@ namespace ShadowPig::Umbra {
             {UTF32Character::Constants::v, UTF32Character::Constants::VerticalTab},
             {UTF32Character::Constants::Backslash, UTF32Character::Constants::Backslash},
             {UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::DoubleQuote},
-            {UTF32Character::Constants::Dollar, UTF32Character::Constants::Dollar}
+            {UTF32Character::Constants::Dollar, UTF32Character::Constants::EscapedDollar}
         };
     }
 
@@ -42,7 +42,6 @@ namespace ShadowPig::Umbra {
             if (result.process) {
                 _output += result.character;
             }
-
         }
     }
         

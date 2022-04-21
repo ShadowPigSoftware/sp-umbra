@@ -7,21 +7,15 @@ namespace ShadowPig::Umbra {
     public:
         using Constants = UTF32CharacterConstants;
 
-        constexpr UTF32Character():
-            UTF32CharacterClass()
-        {}
+        UTF32Character() = default;
+
 
         explicit constexpr UTF32Character(uint32_t character): 
             UTF32CharacterClass(character)
         {}
 
-        constexpr UTF32Character(const UTF32Character& character):
-            UTF32CharacterClass(static_cast<const UTF32CharacterClass&>(character))
-        {}
-
-        constexpr UTF32Character(UTF32Character&& character):
-            UTF32CharacterClass(static_cast<UTF32CharacterClass&&>(character))
-        {}
+        UTF32Character(const UTF32Character& character) = default;
+        UTF32Character(UTF32Character&& character) = default;
 
         constexpr UTF32Character(const UTF32CharacterClass& character):
             UTF32CharacterClass(character)
@@ -31,13 +25,8 @@ namespace ShadowPig::Umbra {
             UTF32CharacterClass(character)
         {}
 
-        constexpr UTF32Character& operator=(const UTF32Character& character) {
-            return static_cast<UTF32Character&>(UTF32CharacterClass::operator=(character));
-        }
-
-        constexpr UTF32Character& operator=(UTF32Character&& character) {
-            return static_cast<UTF32Character&>(UTF32CharacterClass::operator=(character));
-        }
+        UTF32Character& operator=(const UTF32Character& character) = default;
+        UTF32Character& operator=(UTF32Character&& character) = default;
 
         constexpr UTF32Character& operator=(const UTF32CharacterClass& character) {
             return static_cast<UTF32Character&>(UTF32CharacterClass::operator=(character));
@@ -49,3 +38,6 @@ namespace ShadowPig::Umbra {
     };
 }
 
+constexpr ShadowPig::Umbra::UTF32Character operator"" _utf32 (char character) {
+    return ShadowPig::Umbra::UTF32Character(static_cast<uint32_t>(character));
+}

@@ -1,0 +1,56 @@
+/*Implementation Block*/
+$${
+    /*Assign an integer type preprocessor symbol with the value 0x12345*/
+    integerVariable: int = 0x12345;
+    /*Assign an floating point type preprocessor symbol with the value 0.125*/
+    floatVariable: float = 0.125;
+    /*Assign a symbol type preprocessor symbol with textual representation ABCDEFG*/
+    symbolVariable: symbol = {"ABCDEFG"}
+    /*
+        Assign a symbol type preprocessor symbol with textual representation ABCDEFG74565
+        This is performed by converting the integerVariable first to its decimal representation. N.B at this point it is still of int type
+        And then converting it to a symbol, i.e. temp: symbol = {"74565"}
+        Before finally concatenating it with the symbolVariable
+    */
+    z2: symbol = $.concat(symbolVariable, integerVariable.decimal.symbol);
+
+    /*Assign a symbol type preprocessor symbol with multiline textural representation \nx: u32;\ny:u32\nz:u32\n*/
+    multiLineVariable: symbol = {"
+        x:u32;
+        y:u32;
+        z:u32;
+    "}
+
+    /*Scoped Block
+    scope Scope {
+        x: integer = 5;
+    }
+}
+
+/*
+Usage Block:
+    This expands to
+x:u32;
+y:u32;
+z:u32;
+*/
+${multiLineVariable}
+
+/*
+Usage Block:
+    This expands to x: u32 = 5;
+
+*/
+x:u32 = ${Scope.x}
+
+
+/*
+Usage Block:
+    This expands to
+x:u32 = 0x12345;
+y:u32 = 74565;
+z:string = "0x12345 74565";
+*/
+x:u32 = ${integerVariable};
+y:u32 = ${integerVariable.decimal};
+z:string = "${integerVariable} ${integerVariable.decimal}";

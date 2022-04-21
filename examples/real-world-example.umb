@@ -1,0 +1,58 @@
+/*Taken from efr32bg22_timer.h*/
+
+$${
+    scope EFR32BG22 {
+        scope Timer {
+            scope InterruptFlag alias IF{
+                resetValue: integer = 0x00000000;
+                mask:       integer = 0x07770077;
+                scope Overflow alias OF {
+                    value:  integer = 1 << 0;
+                    shift:  integer = 0;
+                    mask:   integer = 1 << 0;
+                }
+
+                scope Underflow alias UF {
+                    value:  integer = 1 << 1;
+                    shift:  integer = 1;
+                    mask:   integer = 1 << 1;
+                }
+
+                scope Underflow alias UF {
+                    value:  integer = 1 << 1;
+                    shift:  integer = 1;
+                    mask:   integer = 1 << 1;
+                }
+            }
+        }
+    }
+}
+
+
+scope EFR32BG22 {
+    class Timer {
+        +IF: u32 @ Offset 0;
+
+    };
+
+    Timer timer0 @ Memory 0x40048000;
+}
+
+main() {
+    //These two are different, this first is fully expanded at compile time
+    timer.IF |= ${(1 << EFR32BG22.Timer.IF.OF.shift) | (1 << EFR32BG22.Timer.IF.UF.shift)};
+    //This on is left and calculated at run time (depending on optimisation)
+    timer.IF |= ((1 << ${EFR32BG22.Timer.IF.OF.shift}) | (1 << ${EFR32BG22.Timer.IF.UF.shift}));
+}
+
+/*
+C equivalent output:
+*/
+typedef struct {
+    uint32_t IF;
+} EFR32BG22_Timer;
+
+void main(void) {
+    ((EFR32BG22_Timer*)0x40048000)->IF |= 0x3;
+    ((EFR32BG22_Timer*)0x40048000)->IF |= ((1 << 0) | (1 << 1));
+}

@@ -57,6 +57,9 @@
         "iomanip": "cpp",
         "iostream": "cpp",
         "xlocmon": "cpp",
-        "xloctime": "cpp"
+        "xloctime": "cpp",
+        "algorithm": "cpp",
+        "list": "cpp",
+        "*.umb": "c"
     }
 }

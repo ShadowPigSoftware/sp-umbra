@@ -7,8 +7,15 @@ namespace ShadowPig::Umbra {
     public:
         //CONTROL
         static constexpr UTF32CharacterClass EndOfUnit = UTF32CharacterClass(0xFFFFFFFFu);
+        //String constants
         static constexpr UTF32CharacterClass StartOfString = UTF32CharacterClass(0xFFFFFFF0u);
         static constexpr UTF32CharacterClass EndOfString = UTF32CharacterClass(0xFFFFFFF1u);
+        static constexpr UTF32CharacterClass EscapedDollar = UTF32CharacterClass(0xFFFFFFF2u);
+        //Preprocessor constants
+        static constexpr UTF32CharacterClass StartOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFFFFF8u);
+        static constexpr UTF32CharacterClass EndOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFFFFF9u);
+        static constexpr UTF32CharacterClass StartOfPreprocessorUsage = UTF32CharacterClass(0xFFFFFFFAu);
+        static constexpr UTF32CharacterClass EndOfPreprocessorUsage = UTF32CharacterClass(0xFFFFFFFBu);
 
         //ASCII
         static constexpr UTF32CharacterClass Null = UTF32CharacterClass(0x00000000u);

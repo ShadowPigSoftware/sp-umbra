@@ -1,0 +1,45 @@
+#if defined(_SILICON_LABS_32B_SERIES_0)
+#define TIMER_CH_VALID(ch)    ((ch) < 3)
+#elif defined(_SILICON_LABS_32B_SERIES_1)
+#if defined(_SILICON_LABS_GECKO_INTERNAL_SDID_80)
+#define TIMER_CH_VALID(ch) _Pragma("GCC warning \"'TIMER_CH_VALID' macro is deprecated for EFR32xG1, Use TIMER_REF_CH_VALID instead\"") ((ch) < 4)
+#else
+#define TIMER_CH_VALID(ch)    ((ch) < 4)
+#endif
+#elif defined(_SILICON_LABS_32B_SERIES_2)
+#define TIMER_CH_VALID(ch)    ((ch) < 3)
+#else
+#error "Unknown device. Undefined number of channels."
+#endif
+
+$${
+    scope SiliconLabs.Timer {
+        if (.SiliconLabs.Series32B == 0) {
+            channelIsValid(reference: integer, channel: integer) -> boolean {
+                unused(reference);
+                return channel < 3;
+            }
+        } else if (.SiliconLabs.Series32B == 1) {
+            channelIsValid(reference: integer, channel: integer) -> boolean {
+                return channel < 4;
+            }
+        }
+        else {
+            $.error("SiliconLabs Series32B is not defined");
+        }
+    }
+}
+
+main() -> u32 {
+    feature enabled=${.SiliconLabs.Timer.channelIsValid(0, 0)} {
+        SiliconLabs.Timer[0].channel[0].doThing();
+    }
+    feature enabled=${!.SiliconLabs.Timer.channelIsValid(0, 0)} {
+        doSomethingElse();
+    }
+}
+
+//Transpiles to 
+int main(void) {
+   SiliconLabs_Timer[0].channel[0].doThing();
+} 

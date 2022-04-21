@@ -34,4 +34,6 @@ namespace ShadowPig::Umbra {
         File _file;
         UTF32String _output;
     };
+
+    using UTUTP = Utf8ToUtf32TranslationPhase;
 }

@@ -7,9 +7,7 @@
 namespace ShadowPig::Umbra {
     class UTF32CharacterClass {
     public:
-        constexpr UTF32CharacterClass():
-            _character(0)
-        {}
+        UTF32CharacterClass() = default;
 
         explicit constexpr UTF32CharacterClass(char character): 
             _character(static_cast<uint32_t>(character))
@@ -19,23 +17,11 @@ namespace ShadowPig::Umbra {
             _character(character)
         {}
 
-        constexpr UTF32CharacterClass(const UTF32CharacterClass& character):
-            _character(character._character)
-        {}
+        UTF32CharacterClass(const UTF32CharacterClass& character) = default;
+        UTF32CharacterClass(UTF32CharacterClass&& character) = default;
 
-        constexpr UTF32CharacterClass(UTF32CharacterClass&& character):
-            _character(std::move(character._character))
-        {}
-
-        constexpr UTF32CharacterClass& operator=(const UTF32CharacterClass& character) {
-            _character = character._character;
-            return *this;
-        }
-
-        constexpr UTF32CharacterClass& operator=(UTF32CharacterClass&& character) {
-            _character = std::move(character._character);
-            return *this;
-        }
+        UTF32CharacterClass& operator=(const UTF32CharacterClass& character) = default;
+        UTF32CharacterClass& operator=(UTF32CharacterClass&& character) = default;
 
         constexpr uint32_t scalar() const {return _character;}
 
