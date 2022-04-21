@@ -80,7 +80,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::Bell,
+                UTF32Character::Constants::EscapedBell,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -94,7 +94,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::Backspace,
+                UTF32Character::Constants::EscapedBackspace,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -108,7 +108,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::Escape,
+                UTF32Character::Constants::EscapedEscape,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -122,7 +122,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::FormFeed,
+                UTF32Character::Constants::EscapedFormFeed,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -136,7 +136,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::LineFeed,
+                UTF32Character::Constants::EscapedLineFeed,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -150,7 +150,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::CarriageReturn,
+                UTF32Character::Constants::EscapedCarriageReturn,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -164,7 +164,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::HorizontalTab,
+                UTF32Character::Constants::EscapedHorizontalTab,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -178,7 +178,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::VerticalTab,
+                UTF32Character::Constants::EscapedVerticalTab,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -192,7 +192,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::Backslash,
+                UTF32Character::Constants::EscapedBackslash,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -206,7 +206,7 @@ spunitModule {
             });
             ::ShadowPig::Umbra::Test::testCharacterSequence(*this, phase.output(), {
                 UTF32Character::Constants::StartOfString,
-                UTF32Character::Constants::DoubleQuote,
+                UTF32Character::Constants::EscapedDoubleQuote,
                 UTF32Character::Constants::EndOfString,
                 UTF32Character::Constants::EndOfUnit
             });
@@ -236,6 +236,8 @@ spunitModule {
                 });
             } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::InvalidEscapeCharacterException& exception) {
                 expect(exception.character()).to.equal(UTF32Character::Constants::d);
+                expect(exception.line()).to.equal(1u);
+                expect(exception.column()).to.equal(3u);
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -251,6 +253,26 @@ spunitModule {
                 });
             } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::InvalidEscapeCharacterException& exception) {
                 expect(exception.character()).to.equal(UTF32Character::Constants::Z);
+                expect(exception.line()).to.equal(1u);
+                expect(exception.column()).to.equal(3u);
+                exceptionThrown = true;
+            }
+            expect(exceptionThrown).to.equal(true);
+        }
+
+        scenario("Throws an error for an invalid escaped character (different position)") {
+            ::ShadowPig::Umbra::StringLiteralTranslationPhase phase;
+             bool exceptionThrown = false;
+            try {
+                phase.run(UTF32String {
+                    UTF32Character::Constants::LineFeed, UTF32Character::Constants::LineFeed,
+                    UTF32Character::Constants::A, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::Z, UTF32Character::Constants::DoubleQuote, 
+                    UTF32Character::Constants::EndOfUnit
+                });
+            } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::InvalidEscapeCharacterException& exception) {
+                expect(exception.character()).to.equal(UTF32Character::Constants::Z);
+                expect(exception.line()).to.equal(3u);
+                expect(exception.column()).to.equal(4u);
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -264,6 +286,8 @@ spunitModule {
                     UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Z, UTF32Character::Constants::EndOfUnit
                 });
             } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                expect(exception.line()).to.equal(1u);
+                expect(exception.column()).to.equal(3u);
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -277,6 +301,8 @@ spunitModule {
                     UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::EndOfUnit
                 });
             } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                expect(exception.line()).to.equal(1u);
+                expect(exception.column()).to.equal(3u);
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);
@@ -290,6 +316,8 @@ spunitModule {
                     UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::Backslash, UTF32Character::Constants::DoubleQuote, UTF32Character::Constants::EndOfUnit
                 });
             } catch (const ::ShadowPig::Umbra::StringLiteralTranslationPhase::IncompleteStringException& exception) {
+                expect(exception.line()).to.equal(1u);
+                expect(exception.column()).to.equal(4u);
                 exceptionThrown = true;
             }
             expect(exceptionThrown).to.equal(true);

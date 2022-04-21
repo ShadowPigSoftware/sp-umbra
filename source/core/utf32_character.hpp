@@ -37,7 +37,3 @@ namespace ShadowPig::Umbra {
         }
     };
 }
-
-constexpr ShadowPig::Umbra::UTF32Character operator"" _utf32 (char character) {
-    return ShadowPig::Umbra::UTF32Character(static_cast<uint32_t>(character));
-}

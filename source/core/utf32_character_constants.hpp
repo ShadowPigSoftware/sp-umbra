@@ -6,16 +6,28 @@ namespace ShadowPig::Umbra {
     class UTF32CharacterConstants {
     public:
         //CONTROL
-        static constexpr UTF32CharacterClass EndOfUnit = UTF32CharacterClass(0xFFFFFFFFu);
+        static constexpr UTF32CharacterClass EndOfUnit = UTF32CharacterClass(0xFFFFFFFFu, 0);
         //String constants
-        static constexpr UTF32CharacterClass StartOfString = UTF32CharacterClass(0xFFFFFFF0u);
-        static constexpr UTF32CharacterClass EndOfString = UTF32CharacterClass(0xFFFFFFF1u);
-        static constexpr UTF32CharacterClass EscapedDollar = UTF32CharacterClass(0xFFFFFFF2u);
+        static constexpr UTF32CharacterClass StartOfString = UTF32CharacterClass(0xFFFF0000u);
+        static constexpr UTF32CharacterClass EndOfString = UTF32CharacterClass(0xFFFF0001u);
+        static constexpr UTF32CharacterClass EscapedBell = UTF32CharacterClass(0xFFFF0107u, 2);
+        static constexpr UTF32CharacterClass EscapedBackspace = UTF32CharacterClass(0xFFFF0108u, 2);
+        static constexpr UTF32CharacterClass EscapedHorizontalTab = UTF32CharacterClass(0xFFFF0109u, 2);
+        static constexpr UTF32CharacterClass EscapedLineFeed = UTF32CharacterClass(0xFFFF010Au, 2);
+        static constexpr UTF32CharacterClass EscapedVerticalTab = UTF32CharacterClass(0xFFFF010Bu, 2);
+        static constexpr UTF32CharacterClass EscapedFormFeed = UTF32CharacterClass(0xFFFF010Cu, 2);
+        static constexpr UTF32CharacterClass EscapedCarriageReturn = UTF32CharacterClass(0xFFFF010Du, 2);
+        static constexpr UTF32CharacterClass EscapedEscape = UTF32CharacterClass(0xFFFF011Bu, 2);
+        static constexpr UTF32CharacterClass EscapedDoubleQuote = UTF32CharacterClass(0xFFFF0124u, 2);
+        static constexpr UTF32CharacterClass EscapedDollar = UTF32CharacterClass(0xFFFF0124u, 2);
+        static constexpr UTF32CharacterClass EscapedBackslash = UTF32CharacterClass(0xFFFF015Cu, 2);
+        
+        
         //Preprocessor constants
-        static constexpr UTF32CharacterClass StartOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFFFFF8u);
-        static constexpr UTF32CharacterClass EndOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFFFFF9u);
-        static constexpr UTF32CharacterClass StartOfPreprocessorUsage = UTF32CharacterClass(0xFFFFFFFAu);
-        static constexpr UTF32CharacterClass EndOfPreprocessorUsage = UTF32CharacterClass(0xFFFFFFFBu);
+        static constexpr UTF32CharacterClass StartOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFF1000u, 3);
+        static constexpr UTF32CharacterClass EndOfPreprocessorDeclaration = UTF32CharacterClass(0xFFFF1001u);
+        static constexpr UTF32CharacterClass StartOfPreprocessorUsage = UTF32CharacterClass(0xFFFF1002u, 2);
+        static constexpr UTF32CharacterClass EndOfPreprocessorUsage = UTF32CharacterClass(0xFFFF1003u);
 
         //ASCII
         static constexpr UTF32CharacterClass Null = UTF32CharacterClass(0x00000000u);
