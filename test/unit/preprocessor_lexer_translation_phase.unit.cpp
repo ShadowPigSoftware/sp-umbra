@@ -3,9 +3,9 @@
 
 #include "translation/preprocessor_lexer/preprocessor_lexer_translation_phase.hpp"
 #include "test-doubles/fake_file_system.hpp"
-#include "utility/test_lexer_sequence.hpp"
 
 using LexerToken = ::ShadowPig::Umbra::LexerToken;
+using LexerTokens = ::ShadowPig::Umbra::LexerTokens;
 using UTF32Character = ::ShadowPig::Umbra::UTF32Character;
 using UTF32String = ::ShadowPig::Umbra::UTF32String;
 
@@ -25,13 +25,18 @@ spunitModule {
                 UTF32Character::Constants::EndOfUnit
             });
             expect(phase.output().size()).to.equal(1u);
-            auto it = phase.output().begin();
-            expect(it->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorImplementation);
-            ::ShadowPig::Umbra::Test::testLexerSequence(*this, it->tokens(), {
-                LexerToken::PreprocessorImplementationAlpha(UTF32String {
-                    UTF32Character::Constants::a
-                })
+            auto itBlock = phase.output().begin();
+            expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorImplementation);
+            const LexerTokens& tokens = itBlock->tokens();
+            expect(tokens.size()).to.equal(1u);
+            auto it = tokens.begin();
+            expect(it->type()).to.equal(LexerToken::Type::PreprocessorImplementationAlpha);
+            expect(it->lexeme()).to.equal(UTF32String {
+                UTF32Character::Constants::a
             });
+            expect(it->line()).to.equal(1u);
+            expect(it->column()).to.equal(4u);
+            
         }
     }
 }

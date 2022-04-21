@@ -6,9 +6,8 @@ namespace ShadowPig::Umbra {
     void PreprocessorLexerTranslationPhase::run(const UTF32String& string) {
         Internal::unused(string);
         PLTP_PreprocessorImplementationBlock block;
-        block.addToken(LexerToken::PreprocessorImplementationAlpha(UTF32String {
-            UTF32Character::Constants::a
-        }));
+        UTF32String lexeme = {UTF32Character::Constants::a};
+        block.addToken(LexerToken(LexerToken::Type::PreprocessorImplementationAlpha, lexeme, 1, 4));
         _output.push_back(block);
     }
 

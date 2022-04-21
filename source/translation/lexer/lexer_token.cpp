@@ -5,9 +5,11 @@ namespace ShadowPig::Umbra {
         _type(Type::Invalid)
     {}
     
-    LexerToken::LexerToken(Type type, const Lexeme& lexeme):
+    LexerToken::LexerToken(Type type, const Lexeme& lexeme, Line line, Column column):
         _type(type),
-        _lexeme(lexeme)
+        _lexeme(lexeme),
+        _line(line),
+        _column(column)
     {}
 
     LexerToken::Type LexerToken::type() const
@@ -20,13 +22,17 @@ namespace ShadowPig::Umbra {
         return _lexeme;
     }
 
+    LexerToken::Line LexerToken::line() const {
+        return _line;
+    }
+
+    LexerToken::Column LexerToken::column() const {
+        return _column;
+    }
+
     bool LexerToken::operator == (const LexerToken& other) const
     {
         return (_type == other._type) && (_lexeme == other._lexeme);
-    }
-    
-    LexerToken LexerToken::PreprocessorImplementationAlpha(const Lexeme& lexeme) {
-        return LexerToken(LexerToken::Type::PreprocessorImplementationAlpha, lexeme);
     }
 }
 

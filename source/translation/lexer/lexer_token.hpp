@@ -7,18 +7,22 @@ namespace ShadowPig::Umbra {
     public:
         using Type = LexerTokenType;
         using Lexeme = UTF32String;
+        using Line = uint32_t;
+        using Column = uint32_t;
         LexerToken();
-        LexerToken(Type type, const Lexeme& lexeme);
+        LexerToken(Type type, const Lexeme& lexeme, Line line, Column column);
 
         Type type() const;
         const Lexeme& lexeme() const;
+        Line line() const;
+        Column column() const;
 
         bool operator == (const LexerToken& other) const;
-    public:
-        static LexerToken PreprocessorImplementationAlpha(const Lexeme& lexeme);
     private:
         Type _type;
         Lexeme _lexeme;
+        Line _line;
+        Column _column;
     };
 }
 
