@@ -5,8 +5,8 @@ std::ostream& operator << (std::ostream& stream, ShadowPig::Umbra::LexerTokenTyp
     case ShadowPig::Umbra::LexerTokenType::NonPreprocessorSequence:
         stream << "NonPreprocessorSequence";
         break;
-    case ShadowPig::Umbra::LexerTokenType::PreprocessorImplementationAlpha:
-        stream << "PreprocessorImplementationAlpha";
+    case ShadowPig::Umbra::LexerTokenType::PreprocessorDeclarationAlpha:
+        stream << "PreprocessorDeclarationAlpha";
         break;
     case ShadowPig::Umbra::LexerTokenType::Invalid:
         stream << "Invalid";

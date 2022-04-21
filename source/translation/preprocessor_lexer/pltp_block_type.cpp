@@ -6,8 +6,8 @@ std::ostream& operator << (std::ostream& stream, ::ShadowPig::Umbra::PLTP_BlockT
     case ::ShadowPig::Umbra::PLTP_BlockType::NonPreprocessor:
         stream << "NonPreprocessor";
         break;
-    case ::ShadowPig::Umbra::PLTP_BlockType::PreprocessorImplementation:
-        stream << "PreprocessorImplementation";
+    case ::ShadowPig::Umbra::PLTP_BlockType::PreprocessorDeclaration:
+        stream << "PreprocessorDeclaration";
         break;
     case ::ShadowPig::Umbra::PLTP_BlockType::PreprocessorUsage:
         stream << "PreprocessorUsage";

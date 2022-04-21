@@ -10,7 +10,7 @@ namespace ShadowPig::Umbra {
         virtual PreprocessorSequenceTranslationPhaseState* normal() const = 0;
         virtual PreprocessorSequenceTranslationPhaseState* firstDollar() const = 0;
         virtual PreprocessorSequenceTranslationPhaseState* secondDollar() const = 0;
-        virtual PreprocessorSequenceTranslationPhaseState* implementationBlock() const = 0;
+        virtual PreprocessorSequenceTranslationPhaseState* declarationBlock() const = 0;
         virtual PreprocessorSequenceTranslationPhaseState* usageBlock() const = 0;
     };
 

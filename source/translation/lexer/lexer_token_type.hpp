@@ -6,7 +6,7 @@ namespace ShadowPig::Umbra {
     enum class LexerTokenType: uint32_t {
         //Preprocessor
         NonPreprocessorSequence = 0,
-        PreprocessorImplementationAlpha = 1,
+        PreprocessorDeclarationAlpha = 1,
 
         //Invalid
         Invalid = 0xFFFFFFFF

@@ -4,7 +4,7 @@
 namespace ShadowPig::Umbra {
     enum class PreprocessorLexerTranslationPhaseBlockType {
         NonPreprocessor,
-        PreprocessorImplementation,
+        PreprocessorDeclaration,
         PreprocessorUsage
     };
 

@@ -3,7 +3,7 @@
 #include "pstp_state_base.hpp"
 
 namespace ShadowPig::Umbra {
-    class PreprocessorSequenceTranslationPhaseStateImplementationBlock: public PreprocessorSequenceTranslationPhaseStateBase {
+    class PreprocessorSequenceTranslationPhaseStateDeclarationBlock: public PreprocessorSequenceTranslationPhaseStateBase {
     public:
         using PreprocessorSequenceTranslationPhaseStateBase::PreprocessorSequenceTranslationPhaseStateBase;
 
@@ -17,5 +17,5 @@ namespace ShadowPig::Umbra {
         bool _insideString;
     };
 
-    using PSTP_StateImplementationBlock = PreprocessorSequenceTranslationPhaseStateImplementationBlock;
+    using PSTP_StateDeclarationBlock = PreprocessorSequenceTranslationPhaseStateDeclarationBlock;
 }

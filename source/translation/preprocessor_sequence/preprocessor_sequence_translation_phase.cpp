@@ -2,7 +2,7 @@
 #include "pstp_state_normal.hpp"
 #include "pstp_state_first_dollar.hpp"
 #include "pstp_state_second_dollar.hpp"
-#include "pstp_state_implementation_block.hpp"
+#include "pstp_state_declaration_block.hpp"
 #include "pstp_state_usage_block.hpp"
 
 namespace ShadowPig::Umbra {
@@ -11,7 +11,7 @@ namespace ShadowPig::Umbra {
         _normalState(new PSTP_StateNormal(*this)),
         _firstDollarState(new PSTP_StateFirstDollar(*this)),
         _secondDollarState(new PSTP_StateSecondDollar(*this)),
-        _implementationBlockState(new PSTP_StateImplementationBlock(*this)),
+        _declarationBlockState(new PSTP_StateDeclarationBlock(*this)),
         _usageBlockState(new PSTP_StateUsageBlock(*this)),
         _state(_normalState) 
     {
@@ -23,7 +23,7 @@ namespace ShadowPig::Umbra {
         delete _normalState;
         delete _firstDollarState;
         delete _secondDollarState;
-        delete _implementationBlockState;
+        delete _declarationBlockState;
         delete _usageBlockState;
     }
 
@@ -39,8 +39,8 @@ namespace ShadowPig::Umbra {
         return _secondDollarState;
     }
     
-    PreprocessorSequenceTranslationPhase::State* PreprocessorSequenceTranslationPhase::implementationBlock() const {
-        return _implementationBlockState;
+    PreprocessorSequenceTranslationPhase::State* PreprocessorSequenceTranslationPhase::declarationBlock() const {
+        return _declarationBlockState;
     }
     
     PreprocessorSequenceTranslationPhase::State* PreprocessorSequenceTranslationPhase::usageBlock() const {

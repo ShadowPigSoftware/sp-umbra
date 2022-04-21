@@ -16,7 +16,7 @@ namespace ShadowPig::Umbra {
         State* normal() const override;
         State* firstDollar() const override;
         State* secondDollar() const override;
-        State* implementationBlock() const override;
+        State* declarationBlock() const override;
         State* usageBlock() const override;
     private:
         struct ProcessCharacterOutput {
@@ -32,7 +32,7 @@ namespace ShadowPig::Umbra {
         State* _normalState;
         State* _firstDollarState;
         State* _secondDollarState;
-        State* _implementationBlockState;
+        State* _declarationBlockState;
         State* _usageBlockState;
         State* _state;
     };

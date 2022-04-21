@@ -13,12 +13,13 @@ SPUMBRA_TRANSLATION_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/translation/erro
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_normal.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_first_dollar.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_second_dollar.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_implementation_block.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_declaration_block.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_sequence/pstp_state_usage_block.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/preprocessor_lexer_translation_phase.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_block_type.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_block.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_preprocessor_implementation_block.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_preprocessor_declaration_block.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_iterator.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token_type.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token.cpp
 

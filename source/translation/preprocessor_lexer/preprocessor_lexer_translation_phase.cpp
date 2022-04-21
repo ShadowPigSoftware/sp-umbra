@@ -1,14 +1,26 @@
 #include "preprocessor_lexer_translation_phase.hpp"
-#include "pltp_preprocessor_implementation_block.hpp"
+#include "pltp_preprocessor_declaration_block.hpp"
 #include "core/unused.hpp"
 
 namespace ShadowPig::Umbra {
     void PreprocessorLexerTranslationPhase::run(const UTF32String& string) {
-        Internal::unused(string);
-        PLTP_PreprocessorImplementationBlock block;
-        UTF32String lexeme = {UTF32Character::Constants::a};
-        block.addToken(LexerToken(LexerToken::Type::PreprocessorImplementationAlpha, lexeme, 1, 4));
-        _output.push_back(block);
+        Iterator it(string);
+
+        while (it.isValid()) {
+            if (*it == UTF32Character::Constants::StartOfPreprocessorDeclaration) {
+                ++it;
+                PLTP_PreprocessorDeclarationBlock block;
+                block.run(it);
+                _output.push_back(block);
+            }
+            // else if (*it == UTF32Character::Constants::StartOfPreprocessorUsage) {
+            //     preprocessorUsage.run(it, end);
+            // }
+            // else {
+            //     nonPreprocessor.run(it, end);
+            // }
+            ++it;
+        }
     }
 
     const PreprocessorLexerTranslationPhase::Blocks& PreprocessorLexerTranslationPhase::output() const {

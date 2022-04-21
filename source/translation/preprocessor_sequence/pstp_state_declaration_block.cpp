@@ -1,19 +1,19 @@
-#include "pstp_state_implementation_block.hpp"
+#include "pstp_state_Declaration_block.hpp"
 
 namespace ShadowPig::Umbra {
-    void PSTP_StateImplementationBlock::enterState() {
+    void PSTP_StateDeclarationBlock::enterState() {
         _braceCount = 1;
         _insideString = false;
     }
 
-    PSTP_StateImplementationBlock::ProcessCharacterOutput PSTP_StateImplementationBlock::processCharacter(const UTF32Character& character ) {
+    PSTP_StateDeclarationBlock::ProcessCharacterOutput PSTP_StateDeclarationBlock::processCharacter(const UTF32Character& character ) {
         if (_insideString) {
             return processCharacterInsideString(character);
         }
         return processCharacterOutsideString(character);
     }
 
-    PSTP_StateImplementationBlock::ProcessCharacterOutput PSTP_StateImplementationBlock::processCharacterInsideString(const UTF32Character& character) {
+    PSTP_StateDeclarationBlock::ProcessCharacterOutput PSTP_StateDeclarationBlock::processCharacterInsideString(const UTF32Character& character) {
         if (character == UTF32Character::Constants::EndOfString) {
             _insideString = false;
         } 
@@ -24,7 +24,7 @@ namespace ShadowPig::Umbra {
         };
     }
 
-    PSTP_StateImplementationBlock::ProcessCharacterOutput PSTP_StateImplementationBlock::processCharacterOutsideString(const UTF32Character& character) {
+    PSTP_StateDeclarationBlock::ProcessCharacterOutput PSTP_StateDeclarationBlock::processCharacterOutsideString(const UTF32Character& character) {
         if (character == UTF32Character::Constants::LeftBrace) {
             ++_braceCount;
         }
