@@ -1,5 +1,7 @@
 SPUMBRA_CORE_SOURCE_FILES := 		$(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_character_class.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_string.cpp
+									$(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_character_traits.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_string.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/core/utf32_string_position_iterator.cpp
 
 
 SPUMBRA_FILESYSTEM_SOURCE_FILES := 	$(SPUMBRA_SOURCE_DIRECTORY)/filesystem/file.cpp \
@@ -19,9 +21,10 @@ SPUMBRA_TRANSLATION_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/translation/erro
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_block_type.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_block.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_preprocessor_declaration_block.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/preprocessor_lexer/pltp_iterator.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token_type.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token.cpp
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/alpha_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/whitespace_lexer.cpp
 
 SPUMBRA_SOURCE_FILES += $(SPUMBRA_CORE_SOURCE_FILES) \
 						$(SPUMBRA_FILESYSTEM_SOURCE_FILES) \

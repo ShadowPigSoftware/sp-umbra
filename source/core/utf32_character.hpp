@@ -1,11 +1,13 @@
 #pragma once
 #include "utf32_character_class.hpp"
 #include "utf32_character_constants.hpp"
+#include "utf32_character_traits.hpp"
 
 namespace ShadowPig::Umbra {
     class UTF32Character: public UTF32CharacterClass {
     public:
         using Constants = UTF32CharacterConstants;
+        using Traits = UTF32CharacterTraits;
 
         UTF32Character() = default;
 

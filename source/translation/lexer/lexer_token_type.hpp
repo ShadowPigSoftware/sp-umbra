@@ -7,6 +7,7 @@ namespace ShadowPig::Umbra {
         //Preprocessor
         NonPreprocessorSequence = 0,
         PreprocessorDeclarationAlpha = 1,
+        PreprocessorDeclarationWhitespace = 2,
 
         //Invalid
         Invalid = 0xFFFFFFFF

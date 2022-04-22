@@ -26,11 +26,11 @@ namespace ShadowPig::Umbra {
             bool process;
             UTF32Character character;    
         };
-        ProcessCharacterOutput processCharacter(const UTF32Character& character, uint32_t line, uint32_t column);
-        ProcessCharacterOutput processCharacterInsideString(const UTF32Character& character, uint32_t line, uint32_t column);
-        ProcessCharacterOutput processCharacterOutsideString(const UTF32Character& character, uint32_t line, uint32_t column);
-        ProcessCharacterOutput processEscapedCharacter(const UTF32Character& character, uint32_t line, uint32_t column);
-        ProcessCharacterOutput processUnescapedCharacter(const UTF32Character& character, uint32_t line, uint32_t column);
+        ProcessCharacterOutput processCharacter(const UTF32String::PositionIterator& iterator);
+        ProcessCharacterOutput processCharacterInsideString(const UTF32String::PositionIterator& iterator);
+        ProcessCharacterOutput processCharacterOutsideString(const UTF32String::PositionIterator& iterator);
+        ProcessCharacterOutput processEscapedCharacter(const UTF32String::PositionIterator& iterator);
+        ProcessCharacterOutput processUnescapedCharacter(const UTF32String::PositionIterator& iterator);
     private:
         UTF32String _output;
         bool _inString;

@@ -1,18 +1,28 @@
 #include "pltp_preprocessor_declaration_block.hpp"
+#include "translation/lexer/alpha_lexer.hpp"
+#include "translation/lexer/whitespace_lexer.hpp"
+#include "core/utf32_character_traits.hpp"
+
 namespace ShadowPig::Umbra {
     PLTP_PreprocessorDeclarationBlock::PreprocessorLexerTranslationPhasePreprocessorDeclarationBlock() {
         _type = Type::PreprocessorDeclaration;
     }
     
-    void PLTP_PreprocessorDeclarationBlock::run(PLTP_Iterator& it) {
-
-        UTF32String lexeme;
-        uint32_t line = it.line();
-        uint32_t column = it.column();
-        while (*it != UTF32Character::Constants::EndOfPreprocessorDeclaration) {
-            lexeme += *it;
-            ++it;
+    void PLTP_PreprocessorDeclarationBlock::run(UTF32String::PositionIterator& it) {
+        UTF32Character character = *it;
+        while (character != UTF32Character::Constants::EndOfPreprocessorDeclaration) {
+            if (UTF32CharacterTraits::isAlpha(character)) {
+                AlphaLexer lexer(LexerToken::Type::PreprocessorDeclarationAlpha);
+                _tokens.push_back(lexer.process(it));
+            }
+            else if (UTF32CharacterTraits::isWhitespace(character)) {
+                WhitespaceLexer lexer(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                _tokens.push_back(lexer.process(it));
+            }
+            else {
+                ++it;
+            }
+            character = *it;
         }
-        _tokens.push_back(LexerToken(LexerToken::Type::PreprocessorDeclarationAlpha, lexeme, line, column));
     }
 }

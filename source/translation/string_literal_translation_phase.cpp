@@ -37,20 +37,13 @@ namespace ShadowPig::Umbra {
     void StringLiteralTranslationPhase::run(const UTF32String& string) {
         _inString = false;
         _escape = false;
-        uint32_t line = 1;
-        uint32_t column = 1;
-        for (auto character: string) {
-            auto result = processCharacter(character, line, column);
+        UTF32String::PositionIterator iterator(string);
+        while (iterator.isValid()) {
+            auto result = processCharacter(iterator);
             if (result.process) {
                 _output += result.character;
             }
-            if (character == UTF32Character::Constants::LineFeed) {
-                ++line;
-                column = 1;
-            }
-            else {
-                column += character.width();
-            }
+            ++iterator;
         }
     }
         
@@ -58,22 +51,22 @@ namespace ShadowPig::Umbra {
         return _output;
     }
 
-    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacter(const UTF32Character& character, uint32_t line, uint32_t column) {
+    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacter(const UTF32String::PositionIterator& iterator) {
         if (_inString) {
-            return processCharacterInsideString(character, line, column);
+            return processCharacterInsideString(iterator);
         }
-        return processCharacterOutsideString(character, line, column);
+        return processCharacterOutsideString(iterator);
     }
 
-    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacterInsideString(const UTF32Character& character, uint32_t line, uint32_t column) {
+    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacterInsideString(const UTF32String::PositionIterator& iterator) {
         if (_escape) {
-            return processEscapedCharacter(character, line, column);
+            return processEscapedCharacter(iterator);
         }
-        return processUnescapedCharacter(character, line, column);
+        return processUnescapedCharacter(iterator);
     }
 
-    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacterOutsideString(const UTF32Character& character, uint32_t line, uint32_t column) {
-        Internal::unused(line, column);
+    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processCharacterOutsideString(const UTF32String::PositionIterator& iterator) {
+        const UTF32Character& character = *iterator;
         if (character == UTF32Character::Constants::DoubleQuote) {
             _inString = true;
             return ProcessCharacterOutput {
@@ -87,8 +80,9 @@ namespace ShadowPig::Umbra {
         };
     }
 
-    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processEscapedCharacter(const UTF32Character& character, uint32_t line, uint32_t column) {
+    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processEscapedCharacter(const UTF32String::PositionIterator& iterator) {
         _escape = false;
+        const UTF32Character& character = *iterator;
         auto it = escapeCharacterMap.find(character);
         if (it != escapeCharacterMap.end())
         {
@@ -98,12 +92,13 @@ namespace ShadowPig::Umbra {
             };  
         }
         else if (character == UTF32Character::Constants::EndOfUnit) {
-            throw IncompleteStringException(line, column);
+            throw IncompleteStringException(iterator.line(), iterator.column());
         }
-        throw InvalidEscapeCharacterException(character, line, column);
+        throw InvalidEscapeCharacterException(character, iterator.line(), iterator.column());
     }
 
-    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processUnescapedCharacter(const UTF32Character& character, uint32_t line, uint32_t column) {
+    StringLiteralTranslationPhase::ProcessCharacterOutput StringLiteralTranslationPhase::processUnescapedCharacter(const UTF32String::PositionIterator& iterator) {
+        const UTF32Character& character = *iterator;
         if (character == UTF32Character::Constants::Backslash) {
             _escape = true;
             return ProcessCharacterOutput {
@@ -115,11 +110,11 @@ namespace ShadowPig::Umbra {
             _inString = false;
             return ProcessCharacterOutput {
                 .process = true, 
-                .character = UTF32Character::Constants::EndOfString //Don't care, this wont be used
+                .character = UTF32Character::Constants::EndOfString
             }; 
         }
         else if (character == UTF32Character::Constants::EndOfUnit) {
-            throw IncompleteStringException(line, column);
+            throw IncompleteStringException(iterator.line(), iterator.column());
         }
         return ProcessCharacterOutput {
             .process = true, 

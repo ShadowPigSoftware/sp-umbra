@@ -4,10 +4,11 @@
 
 namespace ShadowPig::Umbra {
     void PreprocessorLexerTranslationPhase::run(const UTF32String& string) {
-        Iterator it(string);
+        UTF32String::PositionIterator it(string);
 
         while (it.isValid()) {
-            if (*it == UTF32Character::Constants::StartOfPreprocessorDeclaration) {
+            const UTF32Character& character = *it;
+            if (character == UTF32Character::Constants::StartOfPreprocessorDeclaration) {
                 ++it;
                 PLTP_PreprocessorDeclarationBlock block;
                 block.run(it);

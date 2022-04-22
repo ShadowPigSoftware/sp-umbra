@@ -6,7 +6,7 @@ namespace ShadowPig::Umbra {
             return ProcessCharacterOutput {
                 .process = true,
                 .character = UTF32Character::Constants::StartOfPreprocessorDeclaration,
-                .nextState = _states.implementationBlock()
+                .nextState = _states.declarationBlock()
             };
         }
         return ProcessCharacterOutput {
