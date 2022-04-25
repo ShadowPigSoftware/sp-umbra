@@ -607,25 +607,260 @@ spunitModule {
         }
 
         fixture("Numeric Tokens") {
-            // scenario("Replaces Preprocessor Declaration Numeric Token (zero)") {
-            //     ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
-            //     phase.run(UTF32String {
-            //         UTF32Character::Constants::StartOfPreprocessorDeclaration,
-            //         UTF32Character::Constants::Zero,
-            //         UTF32Character::Constants::EndOfPreprocessorDeclaration,
-            //         UTF32Character::Constants::EndOfUnit
-            //     });
-            //     expect(phase.output().size()).to.equal(1u);
-            //     auto itBlock = phase.output().begin();
-            //     expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
-            //     const LexerTokens& tokens = itBlock->tokens();
-            //     expect(tokens.size()).to.equal(1u);
-            //     auto it = tokens.begin();
-            //     expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Zero);
-            //     expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Zero});
-            //     expect(it->line()).to.equal(1u);
-            //     expect(it->column()).to.equal(4u);
-            // }
+            scenario("Replaces Preprocessor Declaration Numeric Token (zero)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Zero);
+                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Zero});
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (single decimal character)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::One,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Decimal);
+                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::One});
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (single decimal character, different value)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Eight,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Decimal);
+                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Eight});
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (multiple decimal character)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::One,
+                    UTF32Character::Constants::Two,
+                    UTF32Character::Constants::Three,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Decimal);
+                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::One, UTF32Character::Constants::Two, UTF32Character::Constants::Three});
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (single decimal character, different value)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Six,
+                    UTF32Character::Constants::Eight,
+                    UTF32Character::Constants::Nine,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Decimal);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Six, UTF32Character::Constants::Eight, UTF32Character::Constants::Nine, UTF32Character::Constants::Zero
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (hexadecimal)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Hexadecimal);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::Zero
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (hexadecimal, longer sequence)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::One,
+                    UTF32Character::Constants::Two,
+                    UTF32Character::Constants::Three,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Hexadecimal);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::One,
+                    UTF32Character::Constants::Two,
+                    UTF32Character::Constants::Three
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (hexadecimal, uppercase characters)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::A,
+                    UTF32Character::Constants::B,
+                    UTF32Character::Constants::C,
+                    UTF32Character::Constants::D,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Hexadecimal);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::A,
+                    UTF32Character::Constants::B,
+                    UTF32Character::Constants::C,
+                    UTF32Character::Constants::D
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (hexadecimal, lowercase characters)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::a,
+                    UTF32Character::Constants::b,
+                    UTF32Character::Constants::c,
+                    UTF32Character::Constants::d,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Hexadecimal);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::x,
+                    UTF32Character::Constants::a,
+                    UTF32Character::Constants::b,
+                    UTF32Character::Constants::c,
+                    UTF32Character::Constants::d
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration Numeric Token (binary)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::b,
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Binary);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::Zero,
+                    UTF32Character::Constants::b,
+                    UTF32Character::Constants::Zero
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
         }
     }
 }

@@ -9,5 +9,7 @@ namespace ShadowPig::Umbra {
         static bool isNumber(const UTF32Character& character);
         static bool isSymbol(const UTF32Character& character);
         static bool isWhitespace(const UTF32Character& character);
+        static bool isHexadecimal(const UTF32Character& character);
+        static bool isBinary(const UTF32Character& character);
     };
 }

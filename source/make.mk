@@ -26,7 +26,13 @@ SPUMBRA_TRANSLATION_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/translation/erro
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/alpha_lexer.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/whitespace_lexer.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/string_lexer.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/symbol_lexer.cpp
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/symbol_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/zero_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/decimal_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/hexadecimal_stem_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/hexadecimal_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/binary_stem_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/binary_lexer.cpp
 
 SPUMBRA_SOURCE_FILES += $(SPUMBRA_CORE_SOURCE_FILES) \
 						$(SPUMBRA_FILESYSTEM_SOURCE_FILES) \

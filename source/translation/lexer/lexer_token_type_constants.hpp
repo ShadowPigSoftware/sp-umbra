@@ -1,6 +1,7 @@
 #pragma once
 
 #include "lexer_token_type_class.hpp"
+#include "numeric_token_types.hpp"
 
 namespace ShadowPig::Umbra {
     class LexerTokenTypeConstants {
@@ -48,6 +49,12 @@ namespace ShadowPig::Umbra {
 
             struct Numeric {
                 static constexpr LexerTokenTypeClass Zero = LexerTokenTypeClass(0x10200000);
+                static constexpr LexerTokenTypeClass Decimal = LexerTokenTypeClass(0x10200001);
+                static constexpr LexerTokenTypeClass Hexadecimal = LexerTokenTypeClass(0x10200002);
+                static constexpr LexerTokenTypeClass Binary = LexerTokenTypeClass(0x10200003);
+                static constexpr LexerTokenTypeClass Float = LexerTokenTypeClass(0x10200004);
+
+                using Types = TNumericTokenTypes<Numeric>;
             };
         };
     };

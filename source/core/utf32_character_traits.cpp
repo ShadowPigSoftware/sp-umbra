@@ -27,4 +27,14 @@ namespace ShadowPig::Umbra {
             ((character >= UTF32Character::Constants::LeftBracket) && (character <= UTF32CharacterConstants::Backtick)) ||
             ((character >= UTF32Character::Constants::LeftBrace) && (character <= UTF32CharacterConstants::Tilde));
     }
+
+    bool UTF32CharacterTraits::isHexadecimal(const UTF32Character& character) {
+        return isNumber(character) ||
+            ((character >= UTF32Character::Constants::a) && (character <= UTF32CharacterConstants::f)) ||
+            ((character >= UTF32Character::Constants::A) && (character <= UTF32CharacterConstants::F));
+    }
+    
+    bool UTF32CharacterTraits::isBinary(const UTF32Character& character) {
+        return (character == UTF32Character::Constants::Zero) || (character == UTF32Character::Constants::One);
+    }
 }
