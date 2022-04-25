@@ -2,6 +2,7 @@
 #include "translation/lexer/alpha_lexer.hpp"
 #include "translation/lexer/whitespace_lexer.hpp"
 #include "translation/lexer/symbol_lexer.hpp"
+#include "translation/lexer/string_lexer.hpp"
 #include "core/utf32_character_traits.hpp"
 
 namespace ShadowPig::Umbra {
@@ -22,6 +23,10 @@ namespace ShadowPig::Umbra {
             }
             else if (UTF32CharacterTraits::isSymbol(character)) {
                 SymbolLexer lexer(SymbolLexer::preprocessorDeclarationTypeFromCharacter(character));
+                _tokens.push_back(lexer.process(it));
+            }
+            else if (character == UTF32Character::Constants::StartOfString) {
+                StringLexer lexer(LexerToken::Type::PreprocessorDeclarationString);
                 _tokens.push_back(lexer.process(it));
             }
             else {

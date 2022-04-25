@@ -38,6 +38,7 @@ namespace ShadowPig::Umbra {
         PreprocessorDeclarationPipe = 30,
         PreprocessorDeclarationRightBrace = 31,
         PreprocessorDeclarationTilde = 32,
+        PreprocessorDeclarationString = 33,
 
         //Invalid
         Invalid = 0xFFFFFFFF

@@ -519,5 +519,29 @@ spunitModule {
                 testSymbolToken(*this, UTF32Character::Constants::Tilde, LexerToken::Type::PreprocessorDeclarationTilde);
             }
         }
+
+        fixture("String Tokens") {
+            scenario("Replaces Preprocessor Declaration String Token ") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::StartOfString,
+                    UTF32Character::Constants::A,
+                    UTF32Character::Constants::EndOfString,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationString);
+                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::StartOfString, UTF32Character::Constants::A, UTF32Character::Constants::EndOfString});
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+        }
     }
 }

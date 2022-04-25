@@ -39,6 +39,7 @@ std::ostream& operator << (std::ostream& stream, ShadowPig::Umbra::LexerTokenTyp
     ENUM_CASE(PreprocessorDeclarationPipe);
     ENUM_CASE(PreprocessorDeclarationRightBrace);
     ENUM_CASE(PreprocessorDeclarationTilde);
+    ENUM_CASE(PreprocessorDeclarationString);
     ENUM_CASE(Invalid);
     default:
         stream << static_cast<uint32_t>(type);
