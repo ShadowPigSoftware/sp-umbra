@@ -26,9 +26,6 @@ include $(SPUMBRA_MAKE_DIRECTORY)/targets.mk
 # Unit testing submake: Must come after targets as the target specifies the output directory
 include $(SPUNIT_DIRECTORY)/spunit.mk
 
-
-
-
 #Dependencies
 -include $(SPUMBRA_SOURCE_DEPENDENCY_FILES)
 -include $(SPUMBRA_TEST_DEPENDENCY_FILES)
