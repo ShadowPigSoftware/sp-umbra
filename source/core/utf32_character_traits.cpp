@@ -20,4 +20,11 @@ namespace ShadowPig::Umbra {
             (character == UTF32Character::Constants::CarriageReturn) ||
             (character == UTF32Character::Constants::Space);
     }
+
+    bool UTF32CharacterTraits::isSymbol(const UTF32Character& character) {
+        return ((character >= UTF32Character::Constants::ExclamationMark) && (character <= UTF32CharacterConstants::Slash)) ||
+            ((character >= UTF32Character::Constants::Colon) && (character <= UTF32CharacterConstants::At)) ||
+            ((character >= UTF32Character::Constants::LeftBracket) && (character <= UTF32CharacterConstants::Backtick)) ||
+            ((character >= UTF32Character::Constants::LeftBrace) && (character <= UTF32CharacterConstants::Tilde));
+    }
 }

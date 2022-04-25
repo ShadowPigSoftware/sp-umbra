@@ -24,7 +24,8 @@ SPUMBRA_TRANSLATION_SOURCE_FILES := $(SPUMBRA_SOURCE_DIRECTORY)/translation/erro
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token_type.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/lexer_token.cpp \
 									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/alpha_lexer.cpp \
-									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/whitespace_lexer.cpp
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/whitespace_lexer.cpp \
+									$(SPUMBRA_SOURCE_DIRECTORY)/translation/lexer/symbol_lexer.cpp
 
 SPUMBRA_SOURCE_FILES += $(SPUMBRA_CORE_SOURCE_FILES) \
 						$(SPUMBRA_FILESYSTEM_SOURCE_FILES) \

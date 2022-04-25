@@ -1,6 +1,7 @@
 #include "pltp_preprocessor_declaration_block.hpp"
 #include "translation/lexer/alpha_lexer.hpp"
 #include "translation/lexer/whitespace_lexer.hpp"
+#include "translation/lexer/symbol_lexer.hpp"
 #include "core/utf32_character_traits.hpp"
 
 namespace ShadowPig::Umbra {
@@ -17,6 +18,10 @@ namespace ShadowPig::Umbra {
             }
             else if (UTF32CharacterTraits::isWhitespace(character)) {
                 WhitespaceLexer lexer(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                _tokens.push_back(lexer.process(it));
+            }
+            else if (UTF32CharacterTraits::isSymbol(character)) {
+                SymbolLexer lexer(SymbolLexer::preprocessorDeclarationTypeFromCharacter(character));
                 _tokens.push_back(lexer.process(it));
             }
             else {
