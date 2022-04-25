@@ -10,7 +10,5 @@ namespace ShadowPig::Umbra {
         static LexerToken::Type preprocessorDeclarationTypeFromCharacter(const UTF32Character& character);
     private:
         LexerToken::Type _type;
-        using TypeMap = std::map<UTF32Character, LexerToken::Type>;
-        static TypeMap _typeMap;
     };
 }

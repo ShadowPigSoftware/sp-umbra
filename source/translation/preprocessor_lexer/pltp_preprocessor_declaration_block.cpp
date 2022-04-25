@@ -14,11 +14,11 @@ namespace ShadowPig::Umbra {
         UTF32Character character = *it;
         while (character != UTF32Character::Constants::EndOfPreprocessorDeclaration) {
             if (UTF32CharacterTraits::isAlpha(character)) {
-                AlphaLexer lexer(LexerToken::Type::PreprocessorDeclarationAlpha);
+                AlphaLexer lexer(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 _tokens.push_back(lexer.process(it));
             }
             else if (UTF32CharacterTraits::isWhitespace(character)) {
-                WhitespaceLexer lexer(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                WhitespaceLexer lexer(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 _tokens.push_back(lexer.process(it));
             }
             else if (UTF32CharacterTraits::isSymbol(character)) {
@@ -26,7 +26,7 @@ namespace ShadowPig::Umbra {
                 _tokens.push_back(lexer.process(it));
             }
             else if (character == UTF32Character::Constants::StartOfString) {
-                StringLexer lexer(LexerToken::Type::PreprocessorDeclarationString);
+                StringLexer lexer(LexerToken::Type::PreprocessorDeclaration::String);
                 _tokens.push_back(lexer.process(it));
             }
             else {

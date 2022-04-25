@@ -1,38 +1,43 @@
 #include "symbol_lexer.hpp"
 
 namespace ShadowPig::Umbra {
-    SymbolLexer::TypeMap SymbolLexer::_typeMap = {
-        {UTF32Character::Constants::ExclamationMark, LexerToken::Type::PreprocessorDeclarationExclamationMark},
-        {UTF32Character::Constants::DoubleQuote, LexerToken::Type::PreprocessorDeclarationDoubleQuote},
-        {UTF32Character::Constants::Hash, LexerToken::Type::PreprocessorDeclarationHash},
-        {UTF32Character::Constants::Dollar, LexerToken::Type::PreprocessorDeclarationDollar},
-        {UTF32Character::Constants::Percent, LexerToken::Type::PreprocessorDeclarationPercent},
-        {UTF32Character::Constants::Ampersand, LexerToken::Type::PreprocessorDeclarationAmpersand},
-        {UTF32Character::Constants::SingleQuote, LexerToken::Type::PreprocessorDeclarationSingleQuote},
-        {UTF32Character::Constants::LeftParenthesis, LexerToken::Type::PreprocessorDeclarationLeftParenthesis},
-        {UTF32Character::Constants::RightParenthesis, LexerToken::Type::PreprocessorDeclarationRightParenthesis},
-        {UTF32Character::Constants::Asterisk, LexerToken::Type::PreprocessorDeclarationAsterisk},
-        {UTF32Character::Constants::Plus, LexerToken::Type::PreprocessorDeclarationPlus},
-        {UTF32Character::Constants::Comma, LexerToken::Type::PreprocessorDeclarationComma},
-        {UTF32Character::Constants::Minus, LexerToken::Type::PreprocessorDeclarationMinus},
-        {UTF32Character::Constants::Period, LexerToken::Type::PreprocessorDeclarationPeriod},
-        {UTF32Character::Constants::Slash, LexerToken::Type::PreprocessorDeclarationSlash},
-        {UTF32Character::Constants::Colon, LexerToken::Type::PreprocessorDeclarationColon},
-        {UTF32Character::Constants::Semicolon, LexerToken::Type::PreprocessorDeclarationSemicolon},
-        {UTF32Character::Constants::LessThan, LexerToken::Type::PreprocessorDeclarationLessThan},
-        {UTF32Character::Constants::Equality, LexerToken::Type::PreprocessorDeclarationEquality},
-        {UTF32Character::Constants::GreaterThan, LexerToken::Type::PreprocessorDeclarationGreaterThan},
-        {UTF32Character::Constants::QuestionMark, LexerToken::Type::PreprocessorDeclarationQuestionMark},
-        {UTF32Character::Constants::LeftBracket, LexerToken::Type::PreprocessorDeclarationLeftBracket},
-        {UTF32Character::Constants::Backslash, LexerToken::Type::PreprocessorDeclarationBackslash},
-        {UTF32Character::Constants::RightBracket, LexerToken::Type::PreprocessorDeclarationRightBracket},
-        {UTF32Character::Constants::Caret, LexerToken::Type::PreprocessorDeclarationCaret},
-        {UTF32Character::Constants::Backtick, LexerToken::Type::PreprocessorDeclarationBacktick},
-        {UTF32Character::Constants::LeftBrace, LexerToken::Type::PreprocessorDeclarationLeftBrace},
-        {UTF32Character::Constants::Pipe, LexerToken::Type::PreprocessorDeclarationPipe},
-        {UTF32Character::Constants::RightBrace, LexerToken::Type::PreprocessorDeclarationRightBrace},
-        {UTF32Character::Constants::Tilde, LexerToken::Type::PreprocessorDeclarationTilde}
-    };
+    namespace {
+        using TypeMap = std::map<UTF32Character, LexerToken::Type>;
+        template <class T> TypeMap makeTypeMap() {
+            return {
+                {UTF32Character::Constants::ExclamationMark, T::ExclamationMark},
+                {UTF32Character::Constants::DoubleQuote, T::DoubleQuote},
+                {UTF32Character::Constants::Hash, T::Hash},
+                {UTF32Character::Constants::Dollar, T::Dollar},
+                {UTF32Character::Constants::Percent, T::Percent},
+                {UTF32Character::Constants::Ampersand, T::Ampersand},
+                {UTF32Character::Constants::SingleQuote, T::SingleQuote},
+                {UTF32Character::Constants::LeftParenthesis, T::LeftParenthesis},
+                {UTF32Character::Constants::RightParenthesis, T::RightParenthesis},
+                {UTF32Character::Constants::Asterisk, T::Asterisk},
+                {UTF32Character::Constants::Plus, T::Plus},
+                {UTF32Character::Constants::Comma, T::Comma},
+                {UTF32Character::Constants::Minus, T::Minus},
+                {UTF32Character::Constants::Period, T::Period},
+                {UTF32Character::Constants::Slash, T::Slash},
+                {UTF32Character::Constants::Colon, T::Colon},
+                {UTF32Character::Constants::Semicolon, T::Semicolon},
+                {UTF32Character::Constants::LessThan, T::LessThan},
+                {UTF32Character::Constants::Equality, T::Equality},
+                {UTF32Character::Constants::GreaterThan, T::GreaterThan},
+                {UTF32Character::Constants::QuestionMark, T::QuestionMark},
+                {UTF32Character::Constants::LeftBracket, T::LeftBracket},
+                {UTF32Character::Constants::Backslash, T::Backslash},
+                {UTF32Character::Constants::RightBracket, T::RightBracket},
+                {UTF32Character::Constants::Caret, T::Caret},
+                {UTF32Character::Constants::Backtick, T::Backtick},
+                {UTF32Character::Constants::LeftBrace, T::LeftBrace},
+                {UTF32Character::Constants::Pipe, T::Pipe},
+                {UTF32Character::Constants::RightBrace, T::RightBrace},
+                {UTF32Character::Constants::Tilde, T::Tilde}
+            };
+        }
+    }
 
     SymbolLexer::SymbolLexer(LexerToken::Type type):
         _type(type) 
@@ -49,8 +54,9 @@ namespace ShadowPig::Umbra {
     }
 
     LexerToken::Type SymbolLexer::preprocessorDeclarationTypeFromCharacter(const UTF32Character& character) {
-        auto it = _typeMap.find(character);
-        if (it != _typeMap.end()) {
+        static TypeMap typeMap = makeTypeMap<LexerToken::Type::PreprocessorDeclaration::Symbol>();
+        auto it = typeMap.find(character);
+        if (it != typeMap.end()) {
             return it->second;
         }
         //TODO: replace this with an actual exception type

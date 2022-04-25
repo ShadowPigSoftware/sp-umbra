@@ -53,7 +53,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::a});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -73,7 +73,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::P});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -93,7 +93,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::a, UTF32Character::Constants::b, UTF32Character::Constants::c, UTF32Character::Constants::d
                 });
@@ -115,7 +115,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::F, UTF32Character::Constants::l, UTF32Character::Constants::A, UTF32Character::Constants::m, UTF32Character::Constants::E
                 });
@@ -137,7 +137,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::Underscore, UTF32Character::Constants::l, UTF32Character::Constants::A, UTF32Character::Constants::m, UTF32Character::Constants::E
                 });
@@ -159,7 +159,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::Underscore, UTF32Character::Constants::l, UTF32Character::Constants::Underscore, UTF32Character::Constants::m, UTF32Character::Constants::Underscore
                 });
@@ -181,7 +181,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::A, UTF32Character::Constants::One, UTF32Character::Constants::Three, UTF32Character::Constants::Five, UTF32Character::Constants::Eight
                 });
@@ -203,7 +203,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::Underscore, UTF32Character::Constants::One, UTF32Character::Constants::Three, UTF32Character::Constants::Five, UTF32Character::Constants::Eight
                 });
@@ -225,7 +225,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(2u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::Underscore, UTF32Character::Constants::One
                 });
@@ -247,7 +247,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(2u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationAlpha);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Alpha);
                 expect(it->lexeme()).to.equal(UTF32String {
                     UTF32Character::Constants::Underscore, UTF32Character::Constants::One
                 });
@@ -271,7 +271,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Space});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -291,7 +291,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::HorizontalTab});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -311,7 +311,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::VerticalTab});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -331,7 +331,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::FormFeed});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -351,7 +351,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::LineFeed});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -371,7 +371,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::CarriageReturn});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -391,7 +391,7 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationWhitespace);
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Whitespace);
                 expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Space, UTF32Character::Constants::Space, UTF32Character::Constants::Space});
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
@@ -400,123 +400,123 @@ spunitModule {
 
         fixture("Symbol Tokens") {
             scenario("Replaces Preprocessor Declaration Symbol Token ( ! )") {
-                testSymbolToken(*this, UTF32Character::Constants::ExclamationMark, LexerToken::Type::PreprocessorDeclarationExclamationMark);
+                testSymbolToken(*this, UTF32Character::Constants::ExclamationMark, LexerToken::Type::PreprocessorDeclaration::Symbol::ExclamationMark);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( \" )") {
-                testSymbolToken(*this, UTF32Character::Constants::DoubleQuote, LexerToken::Type::PreprocessorDeclarationDoubleQuote);
+                testSymbolToken(*this, UTF32Character::Constants::DoubleQuote, LexerToken::Type::PreprocessorDeclaration::Symbol::DoubleQuote);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( # )") {
-                testSymbolToken(*this, UTF32Character::Constants::Hash, LexerToken::Type::PreprocessorDeclarationHash);
+                testSymbolToken(*this, UTF32Character::Constants::Hash, LexerToken::Type::PreprocessorDeclaration::Symbol::Hash);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( $ )") {
-                testSymbolToken(*this, UTF32Character::Constants::Dollar, LexerToken::Type::PreprocessorDeclarationDollar);
+                testSymbolToken(*this, UTF32Character::Constants::Dollar, LexerToken::Type::PreprocessorDeclaration::Symbol::Dollar);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( % )") {
-                testSymbolToken(*this, UTF32Character::Constants::Percent, LexerToken::Type::PreprocessorDeclarationPercent);
+                testSymbolToken(*this, UTF32Character::Constants::Percent, LexerToken::Type::PreprocessorDeclaration::Symbol::Percent);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( & )") {
-                testSymbolToken(*this, UTF32Character::Constants::Ampersand, LexerToken::Type::PreprocessorDeclarationAmpersand);
+                testSymbolToken(*this, UTF32Character::Constants::Ampersand, LexerToken::Type::PreprocessorDeclaration::Symbol::Ampersand);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( \' )") {
-                testSymbolToken(*this, UTF32Character::Constants::SingleQuote, LexerToken::Type::PreprocessorDeclarationSingleQuote);
+                testSymbolToken(*this, UTF32Character::Constants::SingleQuote, LexerToken::Type::PreprocessorDeclaration::Symbol::SingleQuote);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ( )") {
-                testSymbolToken(*this, UTF32Character::Constants::LeftParenthesis, LexerToken::Type::PreprocessorDeclarationLeftParenthesis);
+                testSymbolToken(*this, UTF32Character::Constants::LeftParenthesis, LexerToken::Type::PreprocessorDeclaration::Symbol::LeftParenthesis);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ) )") {
-                testSymbolToken(*this, UTF32Character::Constants::RightParenthesis, LexerToken::Type::PreprocessorDeclarationRightParenthesis);
+                testSymbolToken(*this, UTF32Character::Constants::RightParenthesis, LexerToken::Type::PreprocessorDeclaration::Symbol::RightParenthesis);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( * )") {
-                testSymbolToken(*this, UTF32Character::Constants::Asterisk, LexerToken::Type::PreprocessorDeclarationAsterisk);
+                testSymbolToken(*this, UTF32Character::Constants::Asterisk, LexerToken::Type::PreprocessorDeclaration::Symbol::Asterisk);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( + )") {
-                testSymbolToken(*this, UTF32Character::Constants::Plus, LexerToken::Type::PreprocessorDeclarationPlus);
+                testSymbolToken(*this, UTF32Character::Constants::Plus, LexerToken::Type::PreprocessorDeclaration::Symbol::Plus);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( , )") {
-                testSymbolToken(*this, UTF32Character::Constants::Comma, LexerToken::Type::PreprocessorDeclarationComma);
+                testSymbolToken(*this, UTF32Character::Constants::Comma, LexerToken::Type::PreprocessorDeclaration::Symbol::Comma);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( - )") {
-                testSymbolToken(*this, UTF32Character::Constants::Minus, LexerToken::Type::PreprocessorDeclarationMinus);
+                testSymbolToken(*this, UTF32Character::Constants::Minus, LexerToken::Type::PreprocessorDeclaration::Symbol::Minus);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( . )") {
-                testSymbolToken(*this, UTF32Character::Constants::Period, LexerToken::Type::PreprocessorDeclarationPeriod);
+                testSymbolToken(*this, UTF32Character::Constants::Period, LexerToken::Type::PreprocessorDeclaration::Symbol::Period);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( / )") {
-                testSymbolToken(*this, UTF32Character::Constants::Slash, LexerToken::Type::PreprocessorDeclarationSlash);
+                testSymbolToken(*this, UTF32Character::Constants::Slash, LexerToken::Type::PreprocessorDeclaration::Symbol::Slash);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( : )") {
-                testSymbolToken(*this, UTF32Character::Constants::Colon, LexerToken::Type::PreprocessorDeclarationColon);
+                testSymbolToken(*this, UTF32Character::Constants::Colon, LexerToken::Type::PreprocessorDeclaration::Symbol::Colon);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ; )") {
-                testSymbolToken(*this, UTF32Character::Constants::Semicolon, LexerToken::Type::PreprocessorDeclarationSemicolon);
+                testSymbolToken(*this, UTF32Character::Constants::Semicolon, LexerToken::Type::PreprocessorDeclaration::Symbol::Semicolon);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( < )") {
-                testSymbolToken(*this, UTF32Character::Constants::LessThan, LexerToken::Type::PreprocessorDeclarationLessThan);
+                testSymbolToken(*this, UTF32Character::Constants::LessThan, LexerToken::Type::PreprocessorDeclaration::Symbol::LessThan);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( = )") {
-                testSymbolToken(*this, UTF32Character::Constants::Equality, LexerToken::Type::PreprocessorDeclarationEquality);
+                testSymbolToken(*this, UTF32Character::Constants::Equality, LexerToken::Type::PreprocessorDeclaration::Symbol::Equality);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( > )") {
-                testSymbolToken(*this, UTF32Character::Constants::GreaterThan, LexerToken::Type::PreprocessorDeclarationGreaterThan);
+                testSymbolToken(*this, UTF32Character::Constants::GreaterThan, LexerToken::Type::PreprocessorDeclaration::Symbol::GreaterThan);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ? )") {
-                testSymbolToken(*this, UTF32Character::Constants::QuestionMark, LexerToken::Type::PreprocessorDeclarationQuestionMark);
+                testSymbolToken(*this, UTF32Character::Constants::QuestionMark, LexerToken::Type::PreprocessorDeclaration::Symbol::QuestionMark);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( [ )") {
-                testSymbolToken(*this, UTF32Character::Constants::LeftBracket, LexerToken::Type::PreprocessorDeclarationLeftBracket);
+                testSymbolToken(*this, UTF32Character::Constants::LeftBracket, LexerToken::Type::PreprocessorDeclaration::Symbol::LeftBracket);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( \\ )") {
-                testSymbolToken(*this, UTF32Character::Constants::Backslash, LexerToken::Type::PreprocessorDeclarationBackslash);
+                testSymbolToken(*this, UTF32Character::Constants::Backslash, LexerToken::Type::PreprocessorDeclaration::Symbol::Backslash);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ] )") {
-                testSymbolToken(*this, UTF32Character::Constants::RightBracket, LexerToken::Type::PreprocessorDeclarationRightBracket);
+                testSymbolToken(*this, UTF32Character::Constants::RightBracket, LexerToken::Type::PreprocessorDeclaration::Symbol::RightBracket);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ^ )") {
-                testSymbolToken(*this, UTF32Character::Constants::Caret, LexerToken::Type::PreprocessorDeclarationCaret);
+                testSymbolToken(*this, UTF32Character::Constants::Caret, LexerToken::Type::PreprocessorDeclaration::Symbol::Caret);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ` )") {
-                testSymbolToken(*this, UTF32Character::Constants::Backtick, LexerToken::Type::PreprocessorDeclarationBacktick);
+                testSymbolToken(*this, UTF32Character::Constants::Backtick, LexerToken::Type::PreprocessorDeclaration::Symbol::Backtick);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( { )") {
-                testSymbolToken(*this, UTF32Character::Constants::LeftBrace, LexerToken::Type::PreprocessorDeclarationLeftBrace);
+                testSymbolToken(*this, UTF32Character::Constants::LeftBrace, LexerToken::Type::PreprocessorDeclaration::Symbol::LeftBrace);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( | )") {
-                testSymbolToken(*this, UTF32Character::Constants::Pipe, LexerToken::Type::PreprocessorDeclarationPipe);
+                testSymbolToken(*this, UTF32Character::Constants::Pipe, LexerToken::Type::PreprocessorDeclaration::Symbol::Pipe);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( } )") {
-                testSymbolToken(*this, UTF32Character::Constants::RightBrace, LexerToken::Type::PreprocessorDeclarationRightBrace);
+                testSymbolToken(*this, UTF32Character::Constants::RightBrace, LexerToken::Type::PreprocessorDeclaration::Symbol::RightBrace);
             }
 
             scenario("Replaces Preprocessor Declaration Symbol Token ( ~ )") {
-                testSymbolToken(*this, UTF32Character::Constants::Tilde, LexerToken::Type::PreprocessorDeclarationTilde);
+                testSymbolToken(*this, UTF32Character::Constants::Tilde, LexerToken::Type::PreprocessorDeclaration::Symbol::Tilde);
             }
         }
 
@@ -537,11 +537,95 @@ spunitModule {
                 const LexerTokens& tokens = itBlock->tokens();
                 expect(tokens.size()).to.equal(1u);
                 auto it = tokens.begin();
-                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclarationString);
-                expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::StartOfString, UTF32Character::Constants::A, UTF32Character::Constants::EndOfString});
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::String);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::StartOfString, 
+                    UTF32Character::Constants::A, 
+                    UTF32Character::Constants::EndOfString
+                });
                 expect(it->line()).to.equal(1u);
                 expect(it->column()).to.equal(4u);
             }
+
+            scenario("Replaces Preprocessor Declaration String Token (different values)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::StartOfString,
+                    UTF32Character::Constants::L,
+                    UTF32Character::Constants::Colon,
+                    UTF32Character::Constants::P,
+                    UTF32Character::Constants::QuestionMark,
+                    UTF32Character::Constants::EndOfString,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::String);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::StartOfString, 
+                    UTF32Character::Constants::L, UTF32Character::Constants::Colon, UTF32Character::Constants::P, UTF32Character::Constants::QuestionMark,
+                    UTF32Character::Constants::EndOfString
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+
+            scenario("Replaces Preprocessor Declaration String Token (escaped characters)") {
+                ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+                phase.run(UTF32String {
+                    UTF32Character::Constants::StartOfPreprocessorDeclaration,
+                    UTF32Character::Constants::StartOfString,
+                    UTF32Character::Constants::EscapedDollar,
+                    UTF32Character::Constants::EscapedDoubleQuote,
+                    UTF32Character::Constants::EscapedBackspace,
+                    UTF32Character::Constants::EscapedCarriageReturn,
+                    UTF32Character::Constants::EndOfString,
+                    UTF32Character::Constants::EndOfPreprocessorDeclaration,
+                    UTF32Character::Constants::EndOfUnit
+                });
+                expect(phase.output().size()).to.equal(1u);
+                auto itBlock = phase.output().begin();
+                expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+                const LexerTokens& tokens = itBlock->tokens();
+                expect(tokens.size()).to.equal(1u);
+                auto it = tokens.begin();
+                expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::String);
+                expect(it->lexeme()).to.equal(UTF32String {
+                    UTF32Character::Constants::StartOfString, 
+                    UTF32Character::Constants::EscapedDollar, UTF32Character::Constants::EscapedDoubleQuote, UTF32Character::Constants::EscapedBackspace, UTF32Character::Constants::EscapedCarriageReturn,
+                    UTF32Character::Constants::EndOfString
+                });
+                expect(it->line()).to.equal(1u);
+                expect(it->column()).to.equal(4u);
+            }
+        }
+
+        fixture("Numeric Tokens") {
+            // scenario("Replaces Preprocessor Declaration Numeric Token (zero)") {
+            //     ::ShadowPig::Umbra::PreprocessorLexerTranslationPhase phase;
+            //     phase.run(UTF32String {
+            //         UTF32Character::Constants::StartOfPreprocessorDeclaration,
+            //         UTF32Character::Constants::Zero,
+            //         UTF32Character::Constants::EndOfPreprocessorDeclaration,
+            //         UTF32Character::Constants::EndOfUnit
+            //     });
+            //     expect(phase.output().size()).to.equal(1u);
+            //     auto itBlock = phase.output().begin();
+            //     expect(itBlock->type()).to.equal(::ShadowPig::Umbra::PLTP::Block::Type::PreprocessorDeclaration);
+            //     const LexerTokens& tokens = itBlock->tokens();
+            //     expect(tokens.size()).to.equal(1u);
+            //     auto it = tokens.begin();
+            //     expect(it->type()).to.equal(LexerToken::Type::PreprocessorDeclaration::Numeric::Zero);
+            //     expect(it->lexeme()).to.equal(UTF32String {UTF32Character::Constants::Zero});
+            //     expect(it->line()).to.equal(1u);
+            //     expect(it->column()).to.equal(4u);
+            // }
         }
     }
 }
